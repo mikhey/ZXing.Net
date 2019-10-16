@@ -36,10 +36,15 @@ namespace ZXing.OneD.Test
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void testEncodeIllegalCharacters()
         {
-           new EAN13Writer().encode("5901234123abc", BarcodeFormat.EAN_13, 0, 0);
+            Assert.That(() =>
+            {
+                new EAN13Writer().encode(
+                    "5901234123abc",
+                    BarcodeFormat.EAN_13, 0, 0
+                );
+            }, Throws.TypeOf<ArgumentException>());
         }
     }
 }

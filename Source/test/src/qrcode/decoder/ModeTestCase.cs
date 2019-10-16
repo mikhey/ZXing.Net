@@ -37,10 +37,14 @@ namespace ZXing.QrCode.Internal.Test
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void testBadeMode()
         {
-            Mode.forBits(0x10);
+            Assert.That(() =>
+            {
+                Mode.forBits(0x10);
+            },
+                Throws.TypeOf<ArgumentException>()
+            );
         }
 
         [Test]

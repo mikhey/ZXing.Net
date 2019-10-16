@@ -36,11 +36,16 @@ namespace ZXing.QrCode.Internal.Test
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void testBadECLevel()
         {
-            ErrorCorrectionLevel.forBits(4);
-            throw new AssertionException("Should have thrown an exception");
+            Assert.That(() =>
+            {
+                ErrorCorrectionLevel.forBits(4);
+                throw new AssertionException("Should have thrown an exception");
+            },
+                Throws.TypeOf<AssertionException>()
+            );
+
         }
     }
 }

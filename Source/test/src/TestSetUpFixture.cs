@@ -21,7 +21,7 @@ namespace ZXing
    [SetUpFixture]
    public class TestSetUpFixture
    {
-      [SetUp]
+      [OneTimeSetUp]
       public void SetUp()
       {
          if (System.IO.File.Exists("log4net.config"))

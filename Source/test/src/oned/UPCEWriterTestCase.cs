@@ -32,10 +32,14 @@ namespace ZXing.OneD.Test
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
         public void testEncodeIllegalCharacters()
         {
-            new UPCEWriter().encode("05096abc", BarcodeFormat.UPC_E, 0, 0);
+            Assert.That(() =>
+                {
+                    new UPCEWriter().encode("05096abc", BarcodeFormat.UPC_E, 0, 0);
+                },
+                Throws.TypeOf<ArgumentException>()
+            );
         }
     }
 }

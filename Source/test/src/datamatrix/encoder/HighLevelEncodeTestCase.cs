@@ -387,7 +387,7 @@ namespace ZXing.Datamatrix.Test
          Assert.AreEqual("238 10 99 164 204 254 240 82 220 70 180 209 83 80 80 200", visualized);
       }
 
-      [Ignore]
+      [Ignore("?")]
       [Test]  
       public void testDataURL() {
 
