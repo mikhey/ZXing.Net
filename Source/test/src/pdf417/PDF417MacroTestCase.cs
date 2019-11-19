@@ -75,9 +75,6 @@ namespace ZXing.PDF417.Test
             {
                 var result = reader.Decode(barcodeImg);
                 results.Add(result);
-
-                // Save the image
-                barcodeImg.Save($@"{AppDomain.CurrentDomain.BaseDirectory}\macro-test-1.png", ImageFormat.Png);
             }
 
             writer.Options.Hints[EncodeHintType.PDF417_MACRO_META_DATA] = new PDF417MacroMetadata()
@@ -94,15 +91,14 @@ namespace ZXing.PDF417.Test
             {
                 var result = reader.Decode(barcodeImg);
                 results.Add(result);
-
-                // Save the image
-                barcodeImg.Save($@"{AppDomain.CurrentDomain.BaseDirectory}\macro-test-2.png", ImageFormat.Png);
             }
 
             Assert.IsTrue(
                 (
                     from r in results
-                    where r != null && r?.ResultMetadata != null
+                    where r != null
+                       && r.ResultMetadata.ContainsKey(ResultMetadataType.PDF417_EXTRA_METADATA) == true
+                       && ((PDF417ResultMetadata)r.ResultMetadata[ResultMetadataType.PDF417_EXTRA_METADATA]).FileId == "HELLO.WORLD"
                     select r
                 ).Count() == 2
             );
